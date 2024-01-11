@@ -1,0 +1,103 @@
+BASE_URL = https://blest.ua
+EXIST_USER_EMAIL = sergataalenka@gmail.com
+EXIST_USER_PASSWORD = test0211
+EXIST_USER_NAME = olena
+EXIST_USER_LAST_NAME = test1
+NEW_USER_NAME = Test1
+NEW_USER_LAST_NAME = Test2
+NEW_USER_PHONE = 380999999999
+NEW_USER_PASSWORD = 111111111111
+NEW_USER_EMAIL = test4@gmail.com
+NAME = Test post1
+BODY = Text for new post
+
+TestCase #001 - Verify the process of creating a new user
+
+Precondition:
+1. Open the browser [Chrome]
+
+Steps:
+1. Navigate to the BASE_URL
+2. Click on he login account button
+3. Click on the Register now button
+4. Enter NEW_USER_NAME to the Name field
+5. Enter NEW_USER_LAST_NAME to the Last Name field
+6. Enter NEW_USER_PHONE to the Phone field
+7. Enter NEW_USER_EMAIL to the Email field
+8. Enter NEW_USER_PASSWORD to the Password field
+8. Enter NEW_USER_PASSWORD to the Confirm Password field
+5. Click on the Register button
+Expected result:
+User is created.
+Text "Thank you! To complete the registration, follow the link sent in the email: NEW_USER_EMAIL" is displayed.
+
+Postcondition:
+1. Delete user NEW_USER_NAME from the system
+
+TestCase #002 - Check login to the system with existing user credentials
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_EMAIL and USER_PASSWORD is exist
+
+Steps:
+1. Navigate to the BASE_URL
+2. Click on he login account button
+3. Enter EXIST_USER_EMAIL to the Email field
+4. Enter USER_PASSWORD to the Password field
+5. Click on the Log In button
+
+Expected result:
+User is sign in.
+Text "Hello, EXIST_USER_NAME + EXIST_LAST_NAME" is displayed.
+
+TestCase #003 - Check search field
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_EMAIL and USER_PASSWORD is exist
+3. User is sign in
+
+Steps:
+1. Click on the Search field
+2. Enter data "sofa" to the Search field
+3. Click on the Search button
+
+Expected result:
+Text "***Search Result: sofas***" is displayed
+
+
+TestCase #004 - Check adding products to favourites list
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_EMAIL and USER_PASSWORD is exist
+3. User is sign in
+
+Steps:
+1. Click on the Product catalog button
+2. Select Beds from the drop-down list
+3. Click on the like button for the Michelle Л1800 bed
+4. Click on the personal favourites button
+
+Expected result:
+Text "Favorites" is displayed
+Text "Michelle Л1800" is displayed in the favourites list
+
+TestCase #005 - Check Buy in one click option
+
+Precondition:
+1. Open the browser [Chrome]
+2. User with USER_EMAIL and USER_PASSWORD is exist
+3. User is sign in
+
+Steps:
+1. Click on the Product catalog button
+2. Select Beds from the drop-down list
+3. Click on the Buy in one click button for the Angeli L18 bed
+
+Expected result:
+Text "Buy in one click" is displayed
+Text "Enter your contact phone number and we will call you back to clarify the details of the order" is displayed
+Form for phone is displayed
+Button "Send" is displayed

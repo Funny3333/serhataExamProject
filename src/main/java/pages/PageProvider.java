@@ -8,4 +8,8 @@ public class PageProvider {
     public PageProvider(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
+
+    public LoginPage loginPage() {
+        return new LoginPage(webDriver);
+    }
 }

@@ -12,4 +12,8 @@ public class PageProvider {
     public LoginPage loginPage() {
         return new LoginPage(webDriver);
     }
+
+    public HomePage homePage() {
+        return new HomePage(webDriver);
+    }
 }

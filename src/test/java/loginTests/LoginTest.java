@@ -17,5 +17,7 @@ public class LoginTest extends BaseTest {
         pageProvider.loginPage().enterTextInToInputPassword(EXIST_USER_PASSWORD);
         pageProvider.loginPage().clickOnButtonLogIn();
         Assert.assertTrue("Icon User is not visible", pageProvider.homePage().getHeader().isIconUserPresent());
+        Assert.assertTrue("User name olena test1 is not visible", pageProvider.homePage().getHeader().isUserNamePresent());
+        pageProvider.loginPage().checkIsLoginAccountOptionIsNotVisible();
     }
 }

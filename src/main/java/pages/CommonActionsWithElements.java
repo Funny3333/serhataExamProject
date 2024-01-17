@@ -64,4 +64,8 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
+    }
 }

@@ -16,6 +16,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@name='Login']")
     private WebElement buttonLogIn;
 
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -50,5 +51,10 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonLogIn() {
         logger.info("Click on button " + buttonLogIn);
         clickOnElement(buttonLogIn);
+    }
+
+    public void checkIsLoginAccountOptionIsNotVisible() {
+        checkIsElementNotVisible(loginAccount);
+        logger.info("Login account option is not visible");
     }
 }

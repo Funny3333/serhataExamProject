@@ -68,4 +68,22 @@ public class CommonActionsWithElements {
     protected void checkIsElementNotVisible(WebElement webElement) {
         Assert.assertFalse("Element is visible", isElementDisplayed(webElement));
     }
+
+    protected void checkIsElementVisible(WebElement webElement) {
+        Assert.assertTrue("Element is not visible", isElementDisplayed(webElement));
+    }
+
+    protected void checkTextInElement(WebElement element, String expectedText) {
+        try {
+            String textFromElement = element.getText();
+            Assert.assertEquals("Text in element not matched", expectedText, textFromElement);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);
+    }
 }

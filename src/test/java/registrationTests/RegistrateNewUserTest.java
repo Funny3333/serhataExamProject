@@ -16,7 +16,7 @@ public class RegistrateNewUserTest extends BaseTest {
         pageProvider.loginPage().clickOnButtonRegisterNow();
         pageProvider.loginPage().enterTextIntoInputName(NEW_USER_NAME);
         pageProvider.loginPage().enterTextIntoInputLastName(NEW_LAST_NAME);
-        pageProvider.loginPage().enterTextIntoInputPhone("+380001112233");
+        pageProvider.loginPage().enterTextIntoInputPhone(pageProvider.loginPage().generatePhoneNumber());
         pageProvider.loginPage().enterTextIntoInputRegistrationEmail("test" + Util.getDateAndTimeFormattedOnlyNumbers() + "@test.com");
         pageProvider.loginPage().enterTextIntoInputPassword(REGISTRATION_PASSWORD);
         pageProvider.loginPage().enterTextIntoInputPasswordConfirmation(REGISTRATION_PASSWORD);
@@ -24,3 +24,5 @@ public class RegistrateNewUserTest extends BaseTest {
         Assert.assertTrue("Confirmed modal is not visible", pageProvider.loginPage().isConfirmedModalPresent());
     }
 }
+
+

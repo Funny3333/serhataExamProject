@@ -1,9 +1,11 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.util.Random;
 
 public class LoginPage extends ParentPage {
 
@@ -33,6 +35,14 @@ public class LoginPage extends ParentPage {
    private WebElement buttonRegister;
     @FindBy(xpath = ".//div[@id='comp_fda733c5257f5d7745e29d26d4b8189d']//div[@class='confirmed-modal']")
     private WebElement confirmedModal;
+    @FindBy(xpath = ".//input[@id='title-search-input']")
+    private WebElement inputSearch;
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSubmit;
+    @FindBy(xpath = ".//div[@class='search-settings d-md-flex align-items-md-end justify-content-md-between']")
+    private WebElement searchResultField;
+    @FindBy(xpath = ".//div//h1")
+    private WebElement searchResultMessage;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -119,5 +129,52 @@ public class LoginPage extends ParentPage {
     public boolean isConfirmedModalPresent() {
         logger.info("Is confirmed modal present: " + isElementDisplayed(confirmedModal));
         return isElementDisplayed(confirmedModal);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        clickOnButtonLoginAccount();
+        enterTextInToInputEmail(TestData.EXIST_USER_EMAIL);
+        enterTextInToInputPassword(TestData.EXIST_USER_PASSWORD);
+        clickOnButtonLogIn();
+        return new HomePage(webDriver);
+    }
+
+    public String generatePhoneNumber() {
+        Random random = new Random();
+        int secondPart = 1000 + random.nextInt(900); // to ensure 3 digits
+        //int thirdPart = 100 + random.nextInt(900); // to ensure 2 digits
+        int fourthPart = 10 + random.nextInt(90); // to ensure 2 digits
+        return String.format("+38 (063) -%03d- 18- %02d", secondPart, fourthPart);
+    }
+
+    public void clickOnSearchField() {
+        logger.info("Click on Search field");
+        clickOnElement(inputSearch);
+    }
+
+    public void openLoginPageAndClickOnSearchField(String textForSearch) {
+        openLoginPage();
+        clickOnSearchField();
+        enterTextInToSearchField(textForSearch);
+    }
+
+    public void enterTextInToSearchField(String textForSearch) {
+        logger.info("Enter text in to input Search - " + textForSearch);
+        enterTextInToInput(inputSearch, textForSearch);
+    }
+
+    public void clickOnButtonSubmit() {
+        logger.info("Click on button Submit");
+        clickOnElement(buttonSubmit);
+    }
+
+    public boolean isSearchResultDisplayed() {
+        checkIsElementVisible(searchResultField);
+        return isElementDisplayed(searchResultField);
+    }
+
+    public void checkTextInSuccessMessage(String text) {
+        checkTextInElement(searchResultMessage, text);
     }
 }

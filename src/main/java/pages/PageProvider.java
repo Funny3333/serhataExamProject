@@ -16,4 +16,10 @@ public class PageProvider {
     public HomePage homePage() {
         return new HomePage(webDriver);
     }
+
+    public BedsPage bedsPage() {
+        return new BedsPage(webDriver);}
+
+    public FavoritesPage favoritesPage() {
+        return new FavoritesPage(webDriver);}
 }

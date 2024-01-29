@@ -43,11 +43,20 @@ public class LoginPage extends ParentPage {
     private WebElement searchResultField;
     @FindBy(xpath = ".//div//h1")
     private WebElement searchResultMessage;
+    @FindBy(xpath = ".//div//span[contains(text(),'Product catalog')]")
+    private WebElement elementProductCatalog;
+    @FindBy(xpath = ".//div//a[@class='btn btn-agree']")
+    private WebElement buttonYes;
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
+    }
+
     @Override
     protected String getRelativeUrl() { return "/"; }
 
@@ -176,5 +185,17 @@ public class LoginPage extends ParentPage {
 
     public void checkTextInSuccessMessage(String text) {
         checkTextInElement(searchResultMessage, text);
+    }
+
+    public LoginPage clickOnDropDownSelectValue (String text) {
+        logger.info("Click on DropDown Select Value " + text);
+        clickByVisibleMenuText(text);
+        return this;
+    }
+
+    public LoginPage clickByYesButton() {
+        logger.info ("Click by Product Catalog element");
+        clickOnElement(buttonYes);
+        return this;
     }
 }

@@ -8,8 +8,6 @@ import pages.CommonActionsWithElements;
 public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//span[@class='icon-user']")
     private WebElement iconUser;
-    @FindBy(xpath = "//div[text()='Hello,']")
-    private WebElement textHello;
     @FindBy(xpath = "//div[text()='olena test1']")
     private WebElement userName;
 

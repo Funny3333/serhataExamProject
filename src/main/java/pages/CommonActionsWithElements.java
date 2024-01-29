@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -85,5 +86,16 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
+    }
+
+    public void clickByVisibleMenuText(String text) {
+        try {
+            WebElement element = webDriver.findElement(By.xpath(".//div//div[@class='menu-item']//a//img[@alt='" + text + "']"));
+            element.click();
+            logger.info("Clicked on the element with text: " + text);
+        } catch (Exception e) {
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
     }
 }

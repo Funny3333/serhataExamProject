@@ -29,10 +29,6 @@ public class HomePage extends ParentPage{
         return new HeaderElement(webDriver);
     }
 
-    public LoginPage getLoginPage() {
-        return new LoginPage(webDriver);
-    }
-
     public HomePage enterTextInToSearchField(String textForSearch) {
         logger.info("Enter text in to input Search - " + textForSearch);
         enterTextInToInput(inputSearch, textForSearch);

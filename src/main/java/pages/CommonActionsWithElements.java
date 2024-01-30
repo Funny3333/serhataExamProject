@@ -98,4 +98,59 @@ public class CommonActionsWithElements {
             Assert.fail("Can not work with element");
         }
     }
+
+    protected void selectCheckbox(WebElement checkbox, String elementName) {
+        try {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was selected");
+            } else {
+                logger.info(elementName + " is already selected.");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
+        }
+    }
+
+    protected void setCheckboxState(WebElement checkbox, String elementName, String state) {
+        try {
+            if (state.toLowerCase().equals("check")) {
+                selectCheckbox(checkbox, elementName);
+            } else if (state.toLowerCase().equals("uncheck")) {
+                unselectCheckbox(checkbox, elementName);
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
+        }
+    }
+
+    protected void unselectCheckbox(WebElement checkbox, String elementName) {
+        try {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info(elementName + " was unselected");
+            } else {
+                logger.info(elementName + " is already unselected.");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox element");
+            Assert.fail("Can not work with checkbox element");
+        }
+    }
+
+    public void enterTextIntoInputWithTimeDelay(String number, Long milliseconds, WebElement element) {
+        logger.info("Enter text in to input " +element + " " + number);
+        for (int i = 0; i < number.length(); i++) {
+            Character c = number.charAt(i);
+            String s = c.toString();
+            element.sendKeys(s);
+            try {
+                Thread.sleep(milliseconds);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

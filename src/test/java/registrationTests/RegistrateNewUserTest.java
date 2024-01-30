@@ -12,14 +12,15 @@ public class RegistrateNewUserTest extends BaseTest {
     @Test
     public void registrationNewUser() {
         pageProvider.loginPage().openLoginPage();
+        pageProvider.loginPage().clickByYesButton();
         pageProvider.loginPage().clickOnButtonLoginAccount();
         pageProvider.loginPage().clickOnButtonRegisterNow();
         pageProvider.loginPage().enterTextIntoInputName(NEW_USER_NAME);
         pageProvider.loginPage().enterTextIntoInputLastName(NEW_LAST_NAME);
-        pageProvider.loginPage().enterTextIntoInputPhone(pageProvider.loginPage().generatePhoneNumber());
-        pageProvider.loginPage().enterTextIntoInputRegistrationEmail("test" + Util.getDateAndTimeFormattedOnlyNumbers() + "@test.com");
-        pageProvider.loginPage().enterTextIntoInputPassword(REGISTRATION_PASSWORD);
-        pageProvider.loginPage().enterTextIntoInputPasswordConfirmation(REGISTRATION_PASSWORD);
+        pageProvider.loginPage().enterTextIntoInputPhone(pageProvider.loginPage().generatePhoneNumber(), Long.valueOf("200"));
+        pageProvider.loginPage().enterTextIntoInputRegistrationEmail("test" + Util.getDateAndTimeFormattedOnlyNumbers() + "@test.com",Long.valueOf("200"));
+        pageProvider.loginPage().enterTextIntoInputPassword(REGISTRATION_PASSWORD, Long.valueOf("200"));
+        pageProvider.loginPage().enterTextIntoInputPasswordConfirmation(REGISTRATION_PASSWORD, Long.valueOf("200"));
         pageProvider.loginPage().clickOnButtonRegister();
         Assert.assertTrue("Confirmed modal is not visible", pageProvider.loginPage().isConfirmedModalPresent());
     }

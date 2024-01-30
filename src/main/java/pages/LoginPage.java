@@ -31,7 +31,7 @@ public class LoginPage extends ParentPage {
     private WebElement inputRegistrationPassword;
    @FindBy(xpath = ".//input[@name = 'REGISTER[CONFIRM_PASSWORD]' and @type='password']")
     private WebElement inputConfirmRegistrationPassword;
-    @FindBy(xpath = ".//button[@name = 'register_submit_button']")
+    @FindBy(xpath = ".//button[@name = 'register_submit_button' and @value='Register']")
    private WebElement buttonRegister;
     @FindBy(xpath = ".//div[@id='comp_fda733c5257f5d7745e29d26d4b8189d']//div[@class='confirmed-modal']")
     private WebElement confirmedModal;
@@ -43,10 +43,10 @@ public class LoginPage extends ParentPage {
     private WebElement searchResultField;
     @FindBy(xpath = ".//div//h1")
     private WebElement searchResultMessage;
-    @FindBy(xpath = ".//div//span[contains(text(),'Product catalog')]")
-    private WebElement elementProductCatalog;
     @FindBy(xpath = ".//div//a[@class='btn btn-agree']")
     private WebElement buttonYes;
+    @FindBy(xpath = ".//span[@class='check']")
+    private WebElement checkBox;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -110,24 +110,24 @@ public class LoginPage extends ParentPage {
         enterTextInToInput(inputLastName, newLastName);
     }
 
-    public void enterTextIntoInputPhone(String number) {
+    public void enterTextIntoInputPhone(String number, Long milliseconds) {
         logger.info("Enter text in to input Phone " + number);
-        enterTextInToInput(inputPhoneNumber, number);
+        enterTextIntoInputWithTimeDelay(number, milliseconds, inputPhoneNumber);
     }
 
-    public void enterTextIntoInputRegistrationEmail(String newEmail) {
+    public void enterTextIntoInputRegistrationEmail(String newEmail, Long milliseconds) {
         logger.info("Enter text in to input Registration Email " + newEmail);
-        enterTextInToInput(inputRegistrationEmail, newEmail);
+        enterTextIntoInputWithTimeDelay(newEmail,milliseconds,inputRegistrationEmail);
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public void enterTextIntoInputPassword(String password, Long milliseconds) {
         logger.info("Enter text in to input Password " + password);
-        enterTextInToInput(inputRegistrationPassword, password);
+        enterTextIntoInputWithTimeDelay(password, milliseconds, inputRegistrationPassword);
     }
 
-    public void enterTextIntoInputPasswordConfirmation(String confirmPassword) {
+    public void enterTextIntoInputPasswordConfirmation(String confirmPassword, Long milliseconds) {
         logger.info("Enter text in to input Password Confirmation " + confirmPassword);
-        enterTextInToInput(inputConfirmRegistrationPassword, confirmPassword);
+        enterTextIntoInputWithTimeDelay(confirmPassword,milliseconds, inputConfirmRegistrationPassword);
     }
 
     public void clickOnButtonRegister() {
@@ -151,10 +151,10 @@ public class LoginPage extends ParentPage {
 
     public String generatePhoneNumber() {
         Random random = new Random();
-        int secondPart = 1000 + random.nextInt(900); // to ensure 3 digits
-        //int thirdPart = 100 + random.nextInt(900); // to ensure 2 digits
+        int secondPart = 100 + random.nextInt(900); // to ensure 3 digits
+        int thirdPart = 10 + random.nextInt(900); // to ensure 2 digits
         int fourthPart = 10 + random.nextInt(90); // to ensure 2 digits
-        return String.format("+38 (063) -%03d- 18- %02d", secondPart, fourthPart);
+        return String.format("+38 (063) -%03d- %02d- %02d", secondPart, thirdPart, fourthPart);
     }
 
     public void clickOnSearchField() {
@@ -196,6 +196,11 @@ public class LoginPage extends ParentPage {
     public LoginPage clickByYesButton() {
         logger.info ("Click by Product Catalog element");
         clickOnElement(buttonYes);
+        return this;
+    }
+
+    public LoginPage selectCheckboxUniqueState(String state) {
+        setCheckboxState(checkBox,"Blest Home", state);
         return this;
     }
 }

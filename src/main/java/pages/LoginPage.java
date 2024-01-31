@@ -51,10 +51,6 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public LoginPage getLoginPage() {
-        return new LoginPage(webDriver);
-    }
-
     @Override
     protected String getRelativeUrl() { return "/"; }
 

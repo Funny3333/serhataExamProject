@@ -69,14 +69,14 @@ public class SeatersSofasPage extends ParentPage{
         return this;
     }
     public SeatersSofasPage checkIsModalBuyInOneClickDisplayed() {
-        Assert.assertTrue("Buy in one click modal isn't open", isElementModalBuyInOneClickDisplayed());
+        Assert.assertTrue("Buy in one click modal isn't displayed", isModalBuyInOneClickDisplayed());
         checkTextInElement(textBuyInOneClickInModal, "Buy in one click");
         checkTextInElement(additionalTextInModal, "Enter your contact phone number and we will call you back to clarify the details of the order");
         isElementDisplayed(buttonSend);
         return this;
     }
 
-    private boolean isElementModalBuyInOneClickDisplayed() {
+    private boolean isModalBuyInOneClickDisplayed() {
         logger.info("Is text Buy in one click is present: " + isElementDisplayed(modalBuyInOneClick));
         return isElementDisplayed(modalBuyInOneClick);
     }

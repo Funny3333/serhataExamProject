@@ -10,7 +10,12 @@ public class BuyInOneClickTest extends BaseTest {
                 .openLoginPage();
         pageProvider.loginPage()
                 .clickByYesButton()
-                .clickOnDropDownSelectValue("2-3 seaters sofas 1")
-                .selectCheckboxUniqueState("check");
+                .clickOnDropDownSelectValue("2-3 seaters sofas 1");
+        pageProvider.seatersSofasPage()
+                .checkIsRedirectToSeatersSofasPage()
+                .selectCheckboxUniqueState("check")
+                .clickOnFilterShow()
+                .clickOnButtonBuyInOneClick()
+                .checkIsModalBuyInOneClickDisplayed();
     }
 }

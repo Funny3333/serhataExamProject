@@ -45,8 +45,6 @@ public class LoginPage extends ParentPage {
     private WebElement searchResultMessage;
     @FindBy(xpath = ".//div//a[@class='btn btn-agree']")
     private WebElement buttonYes;
-    @FindBy(xpath = ".//span[@class='check']")
-    private WebElement checkBox;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -108,6 +106,11 @@ public class LoginPage extends ParentPage {
     public void enterTextIntoInputLastName(String newLastName) {
         logger.info("Enter text in to input Last Name " + newLastName);
         enterTextInToInput(inputLastName, newLastName);
+    }
+
+    public void clickIntoInputLastName() {
+        logger.info("Click on input Last Name");
+        clickOnElement(inputLastName);
     }
 
     public void enterTextIntoInputPhone(String number, Long milliseconds) {
@@ -196,11 +199,6 @@ public class LoginPage extends ParentPage {
     public LoginPage clickByYesButton() {
         logger.info ("Click by Product Catalog element");
         clickOnElement(buttonYes);
-        return this;
-    }
-
-    public LoginPage selectCheckboxUniqueState(String state) {
-        setCheckboxState(checkBox,"Blest Home", state);
         return this;
     }
 }

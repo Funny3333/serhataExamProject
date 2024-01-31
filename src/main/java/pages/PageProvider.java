@@ -18,8 +18,14 @@ public class PageProvider {
     }
 
     public BedsPage bedsPage() {
-        return new BedsPage(webDriver);}
+        return new BedsPage(webDriver);
+    }
 
     public FavoritesPage favoritesPage() {
-        return new FavoritesPage(webDriver);}
+        return new FavoritesPage(webDriver);
+    }
+
+    public SeatersSofasPage seatersSofasPage() {
+        return new SeatersSofasPage(webDriver);
+    }
 }
